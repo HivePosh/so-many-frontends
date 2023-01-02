@@ -1,2 +1,2 @@
 # so-many-frontends
-JS module for listing Hive front ends
+JavaScript CommonJS module for listing Hive front ends and parsing Hive content URLs.
