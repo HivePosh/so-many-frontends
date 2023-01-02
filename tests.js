@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const [isHiveUrl, normalizeHiveUrl] = require("./index.js");
+const [isHiveUrl, parseHiveUrl] = require("./index.js");
 
 test("isHiveUrl happy path", (t) => {
   assert.strictEqual(
@@ -13,24 +13,68 @@ test("isHiveUrl negative path", (t) => {
   assert.strictEqual(isHiveUrl("https://www.google.io/what"), false);
 });
 
-test("normalizeHiveUrl reverio question", (t) => {
-  assert.strictEqual(
-    normalizeHiveUrl("https://www.reverio.io/question/manuphotos/muogh"),
-    "https://www.reverio.io/@manuphotos/muogh"
+test("parseHiveUrl reverio question", (t) => {
+  assert.deepEqual(
+    parseHiveUrl("https://www.reverio.io/question/manuphotos/muogh"),
+    { domain: "www.reverio.io", author: "manuphotos", permlink: "muogh" }
   );
 });
 
-test("normalizeHiveUrl reverio answer", (t) => {
-  assert.strictEqual(
-    normalizeHiveUrl("https://www.reverio.io/answer/eturnerx/rpvaynol"),
-    "https://www.reverio.io/@eturnerx/rpvaynol"
+test("parseHiveUrl reverio answer", (t) => {
+  assert.deepEqual(
+    parseHiveUrl("https://www.reverio.io/answer/eturnerx/rpvaynol"),
+    { domain: "www.reverio.io", author: "eturnerx", permlink: "rpvaynol" }
   );
 });
 
-test("normalizeHiveUrl 3Speak", (t) => {
-    assert.strictEqual(
-      normalizeHiveUrl("https://3speak.tv/watch?v=itstman/jmicmsyo"),
-      "https://3speak.tv/@itstman/jmicmsyo"
+test("parseHiveUrl 3Speak", (t) => {
+  assert.deepEqual(
+    parseHiveUrl("https://3speak.tv/watch?v=itstman/jmicmsyo"),
+    { domain: "3speak.tv", author: "itstman", permlink: "jmicmsyo" }
+  );
+});
+
+test("parseHiveUrl peakd.com", (t) => {
+  assert.deepEqual(
+    parseHiveUrl(
+      "https://peakd.com/hive-124452/@blackdaisyft/happy-new-year-or-my-first-hpud-post-or-celebrating-1-year-on-the-blockchain-or-hive-highlights-and-reflections"
+    ),
+    {
+      author: "blackdaisyft",
+      domain: "peakd.com",
+      permlink:
+        "happy-new-year-or-my-first-hpud-post-or-celebrating-1-year-on-the-blockchain-or-hive-highlights-and-reflections",
+    }
+  );
+});
+
+
+test("parseHiveUrl peakd.com with query params", (t) => {
+    assert.deepEqual(
+      parseHiveUrl(
+        "https://peakd.com/hive-124452/@blackdaisyft/happy-new-year-or-my-first-hpud-post-or?node=api.hive.blog"
+      ),
+      {
+        author: "blackdaisyft",
+        domain: "peakd.com",
+        permlink:
+          "happy-new-year-or-my-first-hpud-post-or",
+      }
     );
   });
+
+  test("parseHiveUrl peakd.com with dot in permlink", (t) => {
+    assert.deepEqual(
+      parseHiveUrl(
+        "https://peakd.com/hive-124452/@blackdaisyft/happy.new.year"
+      ),
+      {
+        author: "blackdaisyft",
+        domain: "peakd.com",
+        permlink:
+          "happynewyear",
+      }
+    );
+  });
+  
   

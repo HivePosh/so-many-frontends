@@ -27,7 +27,7 @@ function isHiveUrl(url) {
   return false;
 }
 
-function normalizeHiveUrl(hiveLink)  {
+function parseHiveUrl(hiveLink) {
   if (hiveLink.includes("3speak.tv")) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
   }
@@ -38,7 +38,21 @@ function normalizeHiveUrl(hiveLink)  {
     hiveLink = hiveLink.replace("reverio.io/answer/", "reverio.io/@");
   }
 
-  return hiveLink;
+  const parsedUrl = new URL(hiveLink);
+  const slug = parsedUrl.pathname.split("@")[1];
+  
+  let author, permlink;
+
+  if (slug) {
+    author = slug.split("/")[0];
+    permlink = slug.split("/")[1];
+    if (permlink.indexOf("?") != -1) {
+      permlink = permlink.split("?")[0];
+    }
+    permlink = permlink.replaceAll(".", "");
+  }
+
+  return { domain: parsedUrl.hostname, author: author, permlink: permlink };
 }
 
-module.exports = [isHiveUrl, normalizeHiveUrl];
+module.exports = [isHiveUrl, parseHiveUrl];
