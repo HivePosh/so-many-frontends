@@ -9,11 +9,12 @@ const hiveDomains = [
   "splintertalk.io",
   "kolony.org",
   "actifit.io",
+  "ctptalk.com",
   "travelfeed.io",
   "hivehustlers.io",
   "hive.blocktunes.net",
   "hivelist.org",
-  //Special cases on the below line
+  // Special cases below this line
   "3speak.tv",
   "reverio.io",
 ];
