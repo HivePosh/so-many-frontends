@@ -50,31 +50,43 @@ test("parseHiveUrl peakd.com", (t) => {
 
 
 test("parseHiveUrl peakd.com with query params", (t) => {
-    assert.deepEqual(
-      parseHiveUrl(
-        "https://peakd.com/hive-124452/@blackdaisyft/happy-new-year-or-my-first-hpud-post-or?node=api.hive.blog"
-      ),
-      {
-        author: "blackdaisyft",
-        domain: "peakd.com",
-        permlink:
-          "happy-new-year-or-my-first-hpud-post-or",
-      }
-    );
-  });
+  assert.deepEqual(
+    parseHiveUrl(
+      "https://peakd.com/hive-124452/@blackdaisyft/happy-new-year-or-my-first-hpud-post-or?node=api.hive.blog"
+    ),
+    {
+      author: "blackdaisyft",
+      domain: "peakd.com",
+      permlink:
+        "happy-new-year-or-my-first-hpud-post-or",
+    }
+  );
+});
 
-  test("parseHiveUrl peakd.com with dot in permlink", (t) => {
-    assert.deepEqual(
-      parseHiveUrl(
-        "https://peakd.com/hive-124452/@blackdaisyft/happy.new.year"
-      ),
-      {
-        author: "blackdaisyft",
-        domain: "peakd.com",
-        permlink:
-          "happynewyear",
-      }
-    );
-  });
-  
-  
+test("parseHiveUrl peakd.com with dot in permlink", (t) => {
+  assert.deepEqual(
+    parseHiveUrl(
+      "https://peakd.com/hive-124452/@blackdaisyft/happy.new.year"
+    ),
+    {
+      author: "blackdaisyft",
+      domain: "peakd.com",
+      permlink:
+        "happynewyear",
+    }
+  );
+});
+
+test("parseHiveUrl peakd with a comment", (t) => {
+  assert.deepEqual(
+    parseHiveUrl(
+      "https://peakd.com/hive-124452/@blackdaisyft/happy-new-year-or-my-first-hpud-post-or-celebrating-1-year-on-the-blockchain-or-hive-highlights-and-reflections#@rosmerby/rnu2c2"
+    ),
+    {
+      author: "blackdaisyft",
+      domain: "peakd.com",
+      permlink:
+        "happy-new-year-or-my-first-hpud-post-or-celebrating-1-year-on-the-blockchain-or-hive-highlights-and-reflections",
+    }
+  )
+});
