@@ -15,6 +15,7 @@ const hiveDomains = [
   "hive.blocktunes.net",
   "hivelist.org",
   "hive.ausbit.dev",
+  "skatehive.app",
   // Special cases below this line
   "3speak.tv",
   "reverio.io",
