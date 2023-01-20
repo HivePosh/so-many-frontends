@@ -9,8 +9,16 @@ test("isHiveUrl happy path", (t) => {
   );
 });
 
+test("isHiveUrl happy path 2", (t) => {
+  assert.strictEqual(
+    isHiveUrl("https://beta.peakd.com/@manuphotos/muogh"),
+    true
+  );
+});
+
+
 test("isHiveUrl negative path", (t) => {
-  assert.strictEqual(isHiveUrl("https://www.google.io/what"), false);
+  assert.strictEqual(isHiveUrl("https://sunbowmarvelarchive.blogspot.com/2023/01/the-mystery-of-time-challengers-1991.html"), false);
 });
 
 test("parseHiveUrl reverio question", (t) => {

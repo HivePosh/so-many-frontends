@@ -23,7 +23,12 @@ const hiveDomains = [
 
 function isHiveUrl(url) {
   for (const i in hiveDomains) {
-    if (url.includes(hiveDomains[i])) {
+    const parsedUrl = new URL(url);
+    if (
+      parsedUrl.host == hiveDomains[i] ||
+      parsedUrl.host == "www." + hiveDomains[i] ||
+      parsedUrl.host == "beta." + hiveDomains[i]
+    ) {
       return true;
     }
   }
@@ -43,7 +48,7 @@ function parseHiveUrl(hiveLink) {
 
   const parsedUrl = new URL(hiveLink);
   const slug = parsedUrl.pathname.split("@")[1];
-  
+
   let author, permlink;
 
   if (slug) {
