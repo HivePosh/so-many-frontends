@@ -46,7 +46,14 @@ function parseHiveUrl(hiveLink) {
     hiveLink = hiveLink.replace("reverio.io/answer/", "reverio.io/@");
   }
 
-  const parsedUrl = new URL(hiveLink);
+  let parsedUrl
+  try {
+    parsedUrl = new URL(hiveLink);
+  } catch (err) {
+    console.log(`Failed to parse URL: ${err}`)
+    return { domain: undefined, author: undefined, permlink: undefined };
+  }
+
   const slug = parsedUrl.pathname.split("@")[1];
 
   let author, permlink;
