@@ -25,6 +25,16 @@ test("isHiveUrl negative path", (t) => {
   );
 });
 
+test("isHiveUrl invalid URL", (t) => {
+  assert.strictEqual(
+    isHiveUrl(
+      "/r/the-mystery-of-time-challengers-1991.html"
+    ),
+    false
+  );
+});
+
+
 test("parseHiveUrl reverio question", (t) => {
   assert.deepEqual(
     parseHiveUrl("https://www.reverio.io/question/manuphotos/muogh"),
@@ -103,6 +113,14 @@ test("parseHiveUrl peakd.com no permlink", (t) => {
   assert.deepEqual(parseHiveUrl("https://peakd.com/@trending"), {
     author: undefined,
     domain: "peakd.com",
+    permlink: undefined,
+  });
+});
+
+test("parseHiveUrl invalid URL", (t) => {
+  assert.deepEqual(parseHiveUrl("/r/HopperCodes/comments/10icgcr/hopper_25_credit_250_in_travel_vouchers_code/"), {
+    author: undefined,
+    domain: undefined,
     permlink: undefined,
   });
 });

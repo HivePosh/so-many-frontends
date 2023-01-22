@@ -23,7 +23,14 @@ const hiveDomains = [
 
 function isHiveUrl(url) {
   for (const i in hiveDomains) {
-    const parsedUrl = new URL(url);
+
+    let parsedUrl
+    try {
+      parsedUrl = new URL(url);
+    } catch(err) {
+      return false;
+    }
+
     if (
       parsedUrl.host == hiveDomains[i] ||
       parsedUrl.host == "www." + hiveDomains[i] ||
@@ -50,7 +57,6 @@ function parseHiveUrl(hiveLink) {
   try {
     parsedUrl = new URL(hiveLink);
   } catch (err) {
-    console.log(`Failed to parse URL: ${err}`)
     return { domain: undefined, author: undefined, permlink: undefined };
   }
 
