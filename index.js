@@ -51,7 +51,7 @@ function parseHiveUrl(hiveLink) {
 
   let author, permlink;
 
-  if (slug) {
+  if (slug && slug.includes("/")) {
     author = slug.split("/")[0];
     permlink = slug.split("/")[1];
     if (permlink.indexOf("?") != -1) {

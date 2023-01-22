@@ -16,9 +16,13 @@ test("isHiveUrl happy path 2", (t) => {
   );
 });
 
-
 test("isHiveUrl negative path", (t) => {
-  assert.strictEqual(isHiveUrl("https://sunbowmarvelarchive.blogspot.com/2023/01/the-mystery-of-time-challengers-1991.html"), false);
+  assert.strictEqual(
+    isHiveUrl(
+      "https://sunbowmarvelarchive.blogspot.com/2023/01/the-mystery-of-time-challengers-1991.html"
+    ),
+    false
+  );
 });
 
 test("parseHiveUrl reverio question", (t) => {
@@ -36,10 +40,11 @@ test("parseHiveUrl reverio answer", (t) => {
 });
 
 test("parseHiveUrl 3Speak", (t) => {
-  assert.deepEqual(
-    parseHiveUrl("https://3speak.tv/watch?v=itstman/jmicmsyo"),
-    { domain: "3speak.tv", author: "itstman", permlink: "jmicmsyo" }
-  );
+  assert.deepEqual(parseHiveUrl("https://3speak.tv/watch?v=itstman/jmicmsyo"), {
+    domain: "3speak.tv",
+    author: "itstman",
+    permlink: "jmicmsyo",
+  });
 });
 
 test("parseHiveUrl peakd.com", (t) => {
@@ -56,7 +61,6 @@ test("parseHiveUrl peakd.com", (t) => {
   );
 });
 
-
 test("parseHiveUrl peakd.com with query params", (t) => {
   assert.deepEqual(
     parseHiveUrl(
@@ -65,22 +69,18 @@ test("parseHiveUrl peakd.com with query params", (t) => {
     {
       author: "blackdaisyft",
       domain: "peakd.com",
-      permlink:
-        "happy-new-year-or-my-first-hpud-post-or",
+      permlink: "happy-new-year-or-my-first-hpud-post-or",
     }
   );
 });
 
 test("parseHiveUrl peakd.com with dot in permlink", (t) => {
   assert.deepEqual(
-    parseHiveUrl(
-      "https://peakd.com/hive-124452/@blackdaisyft/happy.new.year"
-    ),
+    parseHiveUrl("https://peakd.com/hive-124452/@blackdaisyft/happy.new.year"),
     {
       author: "blackdaisyft",
       domain: "peakd.com",
-      permlink:
-        "happynewyear",
+      permlink: "happynewyear",
     }
   );
 });
@@ -96,5 +96,13 @@ test("parseHiveUrl peakd with a comment", (t) => {
       permlink:
         "happy-new-year-or-my-first-hpud-post-or-celebrating-1-year-on-the-blockchain-or-hive-highlights-and-reflections",
     }
-  )
+  );
+});
+
+test("parseHiveUrl peakd.com no permlink", (t) => {
+  assert.deepEqual(parseHiveUrl("https://peakd.com/@trending"), {
+    author: undefined,
+    domain: "peakd.com",
+    permlink: undefined,
+  });
 });
