@@ -1,6 +1,6 @@
 {
   "name": "@hiveposh/so-many-frontends",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "JS module for listing Hive front ends",
   "main": "index.js",
   "scripts": {
