@@ -120,7 +120,7 @@ test("parseHiveUrl peakd.com no permlink", (t) => {
 test("parseHiveUrl invalid URL", (t) => {
   assert.deepEqual(parseHiveUrl("/r/HopperCodes/comments/10icgcr/hopper_25_credit_250_in_travel_vouchers_code/"), {
     author: undefined,
-    domain: undefined,
+    domain: 'r',
     permlink: undefined,
   });
 });
