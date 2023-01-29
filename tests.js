@@ -124,3 +124,19 @@ test("parseHiveUrl invalid URL", (t) => {
     permlink: undefined,
   });
 });
+
+test("parse invalid Dbuzz", (t) => {
+  assert.deepEqual(parseHiveUrl("https://d.buzz/#/@aaliyahholt/r/naq4jloe2l8zofrf8urijb"), {
+    author: undefined,
+    domain: undefined,
+    permlink: undefined,
+  });
+});
+
+test("parse valid Dbuzz", (t) => {
+  assert.deepEqual(parseHiveUrl("https://d.buzz/#/@aaliyahholt/c/naq4jloe2l8zofrf8urijb"), {
+    author: "aaliyahholt",
+    domain: "d.buzz",
+    permlink: "naq4jloe2l8zofrf8urijb",
+  });
+});

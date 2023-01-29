@@ -19,6 +19,7 @@ const hiveDomains = [
   // Special cases below this line
   "3speak.tv",
   "reverio.io",
+  "d.buzz"
 ];
 
 function isHiveUrl(url) {
@@ -43,6 +44,7 @@ function isHiveUrl(url) {
 }
 
 function parseHiveUrl(hiveLink) {
+  //For special case sites, we handle them by faking the normal domain.tld/@author/permlink format
   if (hiveLink.includes("3speak.tv")) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
   }
@@ -51,6 +53,15 @@ function parseHiveUrl(hiveLink) {
   }
   if (hiveLink.includes("reverio.io/answer/")) {
     hiveLink = hiveLink.replace("reverio.io/answer/", "reverio.io/@");
+  }
+  if (hiveLink.includes("d.buzz")){
+    const almostSlug = hiveLink.split("@")[1];
+    const splitAlmostSlug = almostSlug.split("/");
+    if (splitAlmostSlug[1] !== "c"){
+      // Dbuzz posts follow d.buzz/#/@author/c/permlink
+      return { domain: undefined, author: undefined, permlink: undefined };
+    }
+    hiveLink = `https://d.buzz/@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
   }
 
   let parsedUrl
