@@ -64,6 +64,10 @@ function parseHiveUrl(hiveLink) {
     hiveLink = `https://d.buzz/@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
   }
 
+  if (!hiveLink.includes("://")){
+    hiveLink = "https://" + hiveLink;
+  }
+
   let parsedUrl
   try {
     parsedUrl = new URL(hiveLink);

@@ -140,3 +140,11 @@ test("parse valid Dbuzz", (t) => {
     permlink: "naq4jloe2l8zofrf8urijb",
   });
 });
+
+test("missing protocol", (t) => {
+  assert.deepEqual(parseHiveUrl("d.buzz/#/@aaliyahholt/c/naq4jloe2l8zofrf8urijb"), {
+    author: "aaliyahholt",
+    domain: "d.buzz",
+    permlink: "naq4jloe2l8zofrf8urijb",
+  });
+});
