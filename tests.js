@@ -120,7 +120,7 @@ test("parseHiveUrl peakd.com no permlink", (t) => {
 test("parseHiveUrl invalid URL", (t) => {
   assert.deepEqual(parseHiveUrl("/r/HopperCodes/comments/10icgcr/hopper_25_credit_250_in_travel_vouchers_code/"), {
     author: undefined,
-    domain: undefined,
+    domain: 'r',
     permlink: undefined,
   });
 });
@@ -135,6 +135,14 @@ test("parse invalid Dbuzz", (t) => {
 
 test("parse valid Dbuzz", (t) => {
   assert.deepEqual(parseHiveUrl("https://d.buzz/#/@aaliyahholt/c/naq4jloe2l8zofrf8urijb"), {
+    author: "aaliyahholt",
+    domain: "d.buzz",
+    permlink: "naq4jloe2l8zofrf8urijb",
+  });
+});
+
+test("missing protocol", (t) => {
+  assert.deepEqual(parseHiveUrl("d.buzz/#/@aaliyahholt/c/naq4jloe2l8zofrf8urijb"), {
     author: "aaliyahholt",
     domain: "d.buzz",
     permlink: "naq4jloe2l8zofrf8urijb",
