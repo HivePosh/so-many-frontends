@@ -35,7 +35,8 @@ function isHiveUrl(url) {
     if (
       parsedUrl.host == hiveDomains[i] ||
       parsedUrl.host == "www." + hiveDomains[i] ||
-      parsedUrl.host == "beta." + hiveDomains[i]
+      parsedUrl.host == "beta." + hiveDomains[i] ||
+      parsedUrl.host == "next." + hiveDomains[i]
     ) {
       return true;
     }
@@ -43,7 +44,11 @@ function isHiveUrl(url) {
   return false;
 }
 
+
+
 function parseHiveUrl(hiveLink) {
+  const EMPTY_RETURN_VALUE = { domain: undefined, author: undefined, permlink: undefined };
+
   //For special case sites, we handle them by faking the normal domain.tld/@author/permlink format
   if (hiveLink.includes("3speak.tv")) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
@@ -55,13 +60,15 @@ function parseHiveUrl(hiveLink) {
     hiveLink = hiveLink.replace("reverio.io/answer/", "reverio.io/@");
   }
   if (hiveLink.includes("d.buzz")){
+    const beforeAlmostSlug = hiveLink.split("@")[0]
     const almostSlug = hiveLink.split("@")[1];
     const splitAlmostSlug = almostSlug.split("/");
     if (splitAlmostSlug[1] !== "c"){
       // Dbuzz posts follow d.buzz/#/@author/c/permlink
-      return { domain: undefined, author: undefined, permlink: undefined };
+      return EMPTY_RETURN_VALUE;
     }
-    hiveLink = `https://d.buzz/@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
+    hiveLink = `${beforeAlmostSlug.replace('#/','')}@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
+    console.log(hiveLink)
   }
 
   if (!hiveLink.includes("://")){
@@ -72,7 +79,7 @@ function parseHiveUrl(hiveLink) {
   try {
     parsedUrl = new URL(hiveLink);
   } catch (err) {
-    return { domain: undefined, author: undefined, permlink: undefined };
+    return EMPTY_RETURN_VALUE;
   }
 
   const slug = parsedUrl.pathname.split("@")[1];

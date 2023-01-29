@@ -148,3 +148,11 @@ test("missing protocol", (t) => {
     permlink: "naq4jloe2l8zofrf8urijb",
   });
 });
+
+test("parse valid next Dbuzz", (t) => {
+  assert.deepEqual(parseHiveUrl("https://next.d.buzz/#/@aaliyahholt/c/naq4jloe2l8zofrf8urijb"), {
+    author: "aaliyahholt",
+    domain: "next.d.buzz",
+    permlink: "naq4jloe2l8zofrf8urijb",
+  });
+});
