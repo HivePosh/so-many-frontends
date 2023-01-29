@@ -61,7 +61,7 @@ function parseHiveUrl(hiveLink) {
       // Dbuzz posts follow d.buzz/#/@author/c/permlink
       return { domain: undefined, author: undefined, permlink: undefined };
     }
-    hiveLink = `d.buzz/@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
+    hiveLink = `https://d.buzz/@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
   }
 
   let parsedUrl
