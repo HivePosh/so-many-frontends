@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const [hiveDomains, isHiveUrl, parseHiveUrl] = require("./index.js");
+const [isHiveUrl, parseHiveUrl, hiveDomains] = require("./index.js");
 
 test("hiveDomains is usable", (t) => {
   assert.ok(typeof hiveDomains === 'object')
