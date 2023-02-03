@@ -1,6 +1,14 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const [isHiveUrl, parseHiveUrl] = require("./index.js");
+const [hiveDomains, isHiveUrl, parseHiveUrl] = require("./index.js");
+
+test("hiveDomains is usable", (t) => {
+  assert.ok(typeof hiveDomains === 'object')
+  assert.ok(hiveDomains.length > 0);
+  assert.ok(hiveDomains.includes('hive.blog'));
+});
+
+
 
 test("isHiveUrl happy path", (t) => {
   assert.strictEqual(

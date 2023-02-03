@@ -98,4 +98,4 @@ function parseHiveUrl(hiveLink) {
   return { domain: parsedUrl.hostname, author: author, permlink: permlink };
 }
 
-module.exports = [isHiveUrl, parseHiveUrl];
+module.exports = [hiveDomains, isHiveUrl, parseHiveUrl];
