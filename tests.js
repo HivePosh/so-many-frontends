@@ -31,6 +31,13 @@ test("isHiveUrl alpha path", (t) => {
   );
 });
 
+test("isHiveUrl dev path", (t) => {
+  assert.strictEqual(
+    isHiveUrl("https://dev.leofinance.io/threads"),
+    true
+  );
+});
+
 test("isHiveUrl negative path", (t) => {
   assert.strictEqual(
     isHiveUrl(

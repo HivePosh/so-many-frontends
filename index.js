@@ -37,7 +37,8 @@ function isHiveUrl(url) {
       parsedUrl.host == "www." + hiveDomains[i] ||
       parsedUrl.host == "alpha." + hiveDomains[i] ||
       parsedUrl.host == "beta." + hiveDomains[i] ||
-      parsedUrl.host == "next." + hiveDomains[i]
+      parsedUrl.host == "next." + hiveDomains[i] ||
+      parsedUrl.host == "dev." + hiveDomains[i]
     ) {
       return true;
     }
