@@ -62,6 +62,10 @@ function parseHiveUrl(hiveLink) {
     hiveLink = hiveLink.replace("reverio.io/answer/", "reverio.io/@");
   }
   if (hiveLink.includes("d.buzz")){
+    if (!hiveLink.includes('@')) {
+      return EMPTY_RETURN_VALUE;
+    }
+
     const beforeAlmostSlug = hiveLink.split("@")[0]
     const almostSlug = hiveLink.split("@")[1];
     const splitAlmostSlug = almostSlug.split("/");
