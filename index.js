@@ -2,7 +2,6 @@ const hiveDomains = [
   "peakd.com",
   "ecency.com",
   "hive.blog",
-  "leofinance.io",
   "cinetv.blog",
   "splintertalk.io",
   "weedcash.network",
@@ -16,7 +15,9 @@ const hiveDomains = [
   "hivelist.org",
   "hive.ausbit.dev",
   "skatehive.app",
+  'veews.io',
   // Special cases below this line
+  "leofinance.io",
   "3speak.tv",
   "reverio.io",
   "d.buzz"
@@ -52,6 +53,9 @@ function parseHiveUrl(hiveLink) {
   const EMPTY_RETURN_VALUE = { domain: undefined, author: undefined, permlink: undefined };
 
   //For special case sites, we handle them by faking the normal domain.tld/@author/permlink format
+  if (hiveLink.includes("leofinance.io/posts/view")) {
+    hiveLink = hiveLink.replace("leofinance.io/posts/view/", "leofinance.io/@");
+  }
   if (hiveLink.includes("3speak.tv")) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
   }

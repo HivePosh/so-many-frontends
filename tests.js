@@ -192,3 +192,12 @@ test("parse only Dbuzz", (t) => {
     permlink: undefined
   });
 });
+
+test("leofinance new UI blog view URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://alpha.leofinance.io/posts/view/idiosyncratic1/proof-of-share-posh-leothreads"), {
+    domain: "alpha.leofinance.io",
+    author: "idiosyncratic1",
+    permlink: "proof-of-share-posh-leothreads"
+  });
+});
+
