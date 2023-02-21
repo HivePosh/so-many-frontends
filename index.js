@@ -56,6 +56,9 @@ function parseHiveUrl(hiveLink) {
   if (hiveLink.includes("leofinance.io/posts/view")) {
     hiveLink = hiveLink.replace("leofinance.io/posts/view/", "leofinance.io/@");
   }
+  if (hiveLink.includes("leofinance.io/threads/view")) {
+    hiveLink = hiveLink.replace("leofinance.io/threads/view/", "leofinance.io/@");
+  }
   if (hiveLink.includes("3speak.tv")) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
   }

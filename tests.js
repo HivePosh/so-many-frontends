@@ -201,3 +201,12 @@ test("leofinance new UI blog view URL", (t) => {
   });
 });
 
+
+test("leofinance new UI threads view URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://alpha.leofinance.io/threads/view/theycallmedan/re-leothreads-7tyyx8co"), {
+    domain: "alpha.leofinance.io",
+    author: "theycallmedan",
+    permlink: "re-leothreads-7tyyx8co"
+  });
+});
+
