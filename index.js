@@ -15,7 +15,7 @@ const hiveDomains = [
   "hivelist.org",
   "hive.ausbit.dev",
   "skatehive.app",
-  'veews.io',
+  "liketu.com",
   // Special cases below this line
   "leofinance.io",
   "3speak.tv",
