@@ -16,6 +16,7 @@ const hiveDomains = [
   "hive.ausbit.dev",
   "skatehive.app",
   "liketu.com",
+  "hivel.ink",
   // Special cases below this line
   "leofinance.io",
   "3speak.tv",
