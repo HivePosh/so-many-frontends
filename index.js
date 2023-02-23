@@ -112,4 +112,20 @@ function parseHiveUrl(hiveLink) {
   return { domain: parsedUrl.hostname, author: author, permlink: permlink };
 }
 
-module.exports = [isHiveUrl, parseHiveUrl, hiveDomains];
+function appStringToHiveLink(app, author, permlink) {
+  if (app.includes('leothreads')) {
+    return `https://leofinance.io/threads/@${author}/${permlink}`
+  }
+
+  if (app.includes('dBuzz')) {
+    return `https://d.buzz/#/@${author}/c/${permlink}`
+  }
+
+  if (app.includes('liketu')) {
+    return `https://www.liketu.com/@${author}/${permlink}`
+  }
+
+  return `https://hivel.ink/@${author}/${permlink}`
+}
+
+module.exports = [isHiveUrl, parseHiveUrl, hiveDomains, appStringToHiveLink];

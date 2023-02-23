@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const [isHiveUrl, parseHiveUrl, hiveDomains] = require("./index.js");
+const [isHiveUrl, parseHiveUrl, hiveDomains, appStringToHiveLink] = require("./index.js");
 
 test("hiveDomains is usable", (t) => {
   assert.ok(typeof hiveDomains === "object");
@@ -210,3 +210,9 @@ test("leofinance new UI threads view URL", (t) => {
   });
 });
 
+
+test("appStringToHiveLink liketu", (t) => {
+  assert.deepEqual(appStringToHiveLink("liketu","dkid14","star-wars-shadow-battle"),
+    'https://www.liketu.com/@dkid14/star-wars-shadow-battle'
+  ); 
+});
