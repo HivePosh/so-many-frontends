@@ -16,6 +16,7 @@ const hiveDomains = [
   "hive.ausbit.dev",
   "skatehive.app",
   "liketu.com",
+  "stemgeeks.net",
   "hivel.ink",
   "vybrainium.com",
   "palnet.io",
