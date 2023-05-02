@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const [isHiveUrl, parseHiveUrl, hiveDomains, appStringToHiveLink] = require("./index.js");
+const { isHiveUrl, parseHiveUrl, hiveDomains, appStringToHiveLink } = require("./index.js");
 
 test("hiveDomains is usable", (t) => {
   assert.ok(typeof hiveDomains === "object");
@@ -194,7 +194,7 @@ test("parse only Dbuzz", (t) => {
 });
 
 test("leofinance new UI blog view URL", (t) => {
-  assert.deepEqual(parseHiveUrl("https://alpha.leofinance.io/posts/view/idiosyncratic1/proof-of-share-posh-leothreads"), {
+  assert.deepEqual(parseHiveUrl("https://alpha.leofinance.io/posts/idiosyncratic1/proof-of-share-posh-leothreads"), {
     domain: "alpha.leofinance.io",
     author: "idiosyncratic1",
     permlink: "proof-of-share-posh-leothreads"
@@ -210,9 +210,23 @@ test("leofinance new UI threads view URL", (t) => {
   });
 });
 
+test("leofinance new UI post view URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://leofinance.io/posts/bitcoinflood/godfather-of-ai-warning-and-uk-crypto"), {
+    domain: "leofinance.io",
+    author: "bitcoinflood",
+    permlink: "godfather-of-ai-warning-and-uk-crypto"
+  });
+});
 
 test("appStringToHiveLink liketu", (t) => {
   assert.deepEqual(appStringToHiveLink("liketu","dkid14","star-wars-shadow-battle"),
     'https://www.liketu.com/@dkid14/star-wars-shadow-battle'
   ); 
+});
+
+test("appStringToHiveLink liketu", (t) => {
+
+  assert.deepEqual(appStringToHiveLink("leothreads","bitcoinflood","godfather-of-ai-warning-and-uk-crypto"),
+    'https://leofinance.io/threads/view/bitcoinflood/godfather-of-ai-warning-and-uk-crypto'
+  );
 });

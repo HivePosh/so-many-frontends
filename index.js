@@ -32,16 +32,15 @@ const hiveDomains = [
   "leofinance.io",
   "3speak.tv",
   "reverio.io",
-  "d.buzz"
+  "d.buzz",
 ];
 
 function isHiveUrl(url) {
   for (const i in hiveDomains) {
-
-    let parsedUrl
+    let parsedUrl;
     try {
       parsedUrl = new URL(url);
-    } catch(err) {
+    } catch (err) {
       return false;
     }
 
@@ -59,17 +58,22 @@ function isHiveUrl(url) {
   return false;
 }
 
-
-
 function parseHiveUrl(hiveLink) {
-  const EMPTY_RETURN_VALUE = { domain: undefined, author: undefined, permlink: undefined };
+  const EMPTY_RETURN_VALUE = {
+    domain: undefined,
+    author: undefined,
+    permlink: undefined,
+  };
 
   //For special case sites, we handle them by faking the normal domain.tld/@author/permlink format
-  if (hiveLink.includes("leofinance.io/posts/view")) {
-    hiveLink = hiveLink.replace("leofinance.io/posts/view/", "leofinance.io/@");
+  if (hiveLink.includes("leofinance.io/posts/")) {
+    hiveLink = hiveLink.replace("leofinance.io/posts/", "leofinance.io/@");
   }
   if (hiveLink.includes("leofinance.io/threads/view")) {
-    hiveLink = hiveLink.replace("leofinance.io/threads/view/", "leofinance.io/@");
+    hiveLink = hiveLink.replace(
+      "leofinance.io/threads/view/",
+      "leofinance.io/@"
+    );
   }
   if (hiveLink.includes("3speak.tv")) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
@@ -80,27 +84,29 @@ function parseHiveUrl(hiveLink) {
   if (hiveLink.includes("reverio.io/answer/")) {
     hiveLink = hiveLink.replace("reverio.io/answer/", "reverio.io/@");
   }
-  if (hiveLink.includes("d.buzz")){
-    if (!hiveLink.includes('@')) {
+  if (hiveLink.includes("d.buzz")) {
+    if (!hiveLink.includes("@")) {
       return EMPTY_RETURN_VALUE;
     }
 
-    const beforeAlmostSlug = hiveLink.split("@")[0]
+    const beforeAlmostSlug = hiveLink.split("@")[0];
     const almostSlug = hiveLink.split("@")[1];
     const splitAlmostSlug = almostSlug.split("/");
-    if (splitAlmostSlug[1] !== "c"){
+    if (splitAlmostSlug[1] !== "c") {
       // Dbuzz posts follow d.buzz/#/@author/c/permlink
       return EMPTY_RETURN_VALUE;
     }
-    hiveLink = `${beforeAlmostSlug.replace('#/','')}@${splitAlmostSlug[0]}/${splitAlmostSlug[2]}`;
-    console.log(hiveLink)
+    hiveLink = `${beforeAlmostSlug.replace("#/", "")}@${splitAlmostSlug[0]}/${
+      splitAlmostSlug[2]
+    }`;
+    console.log(hiveLink);
   }
 
-  if (!hiveLink.includes("://")){
+  if (!hiveLink.includes("://")) {
     hiveLink = "https://" + hiveLink;
   }
 
-  let parsedUrl
+  let parsedUrl;
   try {
     parsedUrl = new URL(hiveLink);
   } catch (err) {
@@ -124,19 +130,24 @@ function parseHiveUrl(hiveLink) {
 }
 
 function appStringToHiveLink(app, author, permlink) {
-  if (app.includes('leothreads')) {
-    return `https://leofinance.io/threads/@${author}/${permlink}`
+  if (app.includes("leothreads")) {
+    return `https://leofinance.io/threads/view/${author}/${permlink}`;
   }
 
-  if (app.includes('dBuzz')) {
-    return `https://d.buzz/#/@${author}/c/${permlink}`
+  if (app.includes("dBuzz")) {
+    return `https://d.buzz/#/@${author}/c/${permlink}`;
   }
 
-  if (app.includes('liketu')) {
-    return `https://www.liketu.com/@${author}/${permlink}`
+  if (app.includes("liketu")) {
+    return `https://www.liketu.com/@${author}/${permlink}`;
   }
 
-  return `https://hivel.ink/@${author}/${permlink}`
+  return `https://hivel.ink/@${author}/${permlink}`;
 }
 
-module.exports = [isHiveUrl, parseHiveUrl, hiveDomains, appStringToHiveLink];
+module.exports = {
+  isHiveUrl,
+  parseHiveUrl,
+  hiveDomains,
+  appStringToHiveLink,
+};
