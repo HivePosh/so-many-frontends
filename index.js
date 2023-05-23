@@ -69,9 +69,9 @@ function parseHiveUrl(hiveLink) {
   if (hiveLink.includes("leofinance.io/posts/")) {
     hiveLink = hiveLink.replace("leofinance.io/posts/", "leofinance.io/@");
   }
-  if (hiveLink.includes("leofinance.io/threads/view")) {
+  if (hiveLink.includes("leofinance.io/threads/")) {
     hiveLink = hiveLink.replace(
-      "leofinance.io/threads/view/",
+      "leofinance.io/threads/",
       "leofinance.io/@"
     );
   }
@@ -131,7 +131,7 @@ function parseHiveUrl(hiveLink) {
 
 function appStringToHiveLink(app, author, permlink) {
   if (app.includes("leothreads")) {
-    return `https://leofinance.io/threads/view/${author}/${permlink}`;
+    return `https://leofinance.io/threads/${author}/${permlink}`;
   }
 
   if (app.includes("dBuzz")) {

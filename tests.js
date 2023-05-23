@@ -203,8 +203,8 @@ test("leofinance new UI blog view URL", (t) => {
 
 
 test("leofinance new UI threads view URL", (t) => {
-  assert.deepEqual(parseHiveUrl("https://alpha.leofinance.io/threads/view/theycallmedan/re-leothreads-7tyyx8co"), {
-    domain: "alpha.leofinance.io",
+  assert.deepEqual(parseHiveUrl("https://leofinance.io/threads/theycallmedan/re-leothreads-7tyyx8co"), {
+    domain: "leofinance.io",
     author: "theycallmedan",
     permlink: "re-leothreads-7tyyx8co"
   });
@@ -227,6 +227,6 @@ test("appStringToHiveLink liketu", (t) => {
 test("appStringToHiveLink liketu", (t) => {
 
   assert.deepEqual(appStringToHiveLink("leothreads","bitcoinflood","godfather-of-ai-warning-and-uk-crypto"),
-    'https://leofinance.io/threads/view/bitcoinflood/godfather-of-ai-warning-and-uk-crypto'
+    'https://leofinance.io/threads/bitcoinflood/godfather-of-ai-warning-and-uk-crypto'
   );
 });
