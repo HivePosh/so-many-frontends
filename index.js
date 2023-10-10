@@ -30,6 +30,7 @@ const hiveDomains = [
   "lassecash.com",
   // Special cases below this line
   "leofinance.io",
+  "inleo.io",
   "3speak.tv",
   "reverio.io",
   "d.buzz",
@@ -73,6 +74,15 @@ function parseHiveUrl(hiveLink) {
     hiveLink = hiveLink.replace(
       "leofinance.io/threads/",
       "leofinance.io/@"
+    );
+  }
+  if (hiveLink.includes("inleo.io/posts/")) {
+    hiveLink = hiveLink.replace("inleo.io/posts/", "inleo.io/@");
+  }
+  if (hiveLink.includes("inleo.io/threads/")) {
+    hiveLink = hiveLink.replace(
+      "inleo.io/threads/",
+      "inleo.io/@"
     );
   }
   if (hiveLink.includes("3speak.tv")) {
@@ -131,7 +141,7 @@ function parseHiveUrl(hiveLink) {
 
 function appStringToHiveLink(app, author, permlink) {
   if (app.includes("leothreads")) {
-    return `https://leofinance.io/threads/${author}/${permlink}`;
+    return `https://inleo.io/threads/${author}/${permlink}`;
   }
 
   if (app.includes("dBuzz")) {

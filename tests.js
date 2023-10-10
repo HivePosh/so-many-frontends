@@ -15,6 +15,20 @@ test("isHiveUrl happy path", (t) => {
   );
 });
 
+test("isHiveUrl leo path", (t) => {
+  assert.strictEqual(
+    isHiveUrl("https://leofinance.io/posts/taskmaster4450/the-hive-protocol-the-largest-financial-institution-in-the-world"),
+    true
+  );
+});
+
+test("isHiveUrl inleo path", (t) => {
+  assert.strictEqual(
+    isHiveUrl("https://inleo.io/posts/taskmaster4450/the-hive-protocol-the-largest-financial-institution-in-the-world"),
+    true
+  );
+});
+
 test("isHiveUrl happy path 2", (t) => {
   assert.strictEqual(
     isHiveUrl("https://beta.peakd.com/@manuphotos/muogh"),
@@ -28,6 +42,10 @@ test("isHiveUrl alpha path", (t) => {
 
 test("isHiveUrl dev path", (t) => {
   assert.strictEqual(isHiveUrl("https://dev.leofinance.io/threads"), true);
+});
+
+test("isHiveUrl inleo dev path", (t) => {
+  assert.strictEqual(isHiveUrl("https://dev.inleo.io/threads"), true);
 });
 
 test("isHiveUrl negative path", (t) => {
@@ -210,9 +228,36 @@ test("leofinance new UI threads view URL", (t) => {
   });
 });
 
+
 test("leofinance new UI post view URL", (t) => {
   assert.deepEqual(parseHiveUrl("https://leofinance.io/posts/bitcoinflood/godfather-of-ai-warning-and-uk-crypto"), {
     domain: "leofinance.io",
+    author: "bitcoinflood",
+    permlink: "godfather-of-ai-warning-and-uk-crypto"
+  });
+});
+
+test("inleo new UI blog view URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://inleo.io/posts/idiosyncratic1/proof-of-share-posh-leothreads"), {
+    domain: "inleo.io",
+    author: "idiosyncratic1",
+    permlink: "proof-of-share-posh-leothreads"
+  });
+});
+
+
+test("inleo new UI threads view URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://inleo.io/threads/theycallmedan/re-leothreads-7tyyx8co"), {
+    domain: "inleo.io",
+    author: "theycallmedan",
+    permlink: "re-leothreads-7tyyx8co"
+  });
+});
+
+
+test("inleo new UI post view URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://inleo.io/posts/bitcoinflood/godfather-of-ai-warning-and-uk-crypto"), {
+    domain: "inleo.io",
     author: "bitcoinflood",
     permlink: "godfather-of-ai-warning-and-uk-crypto"
   });
@@ -224,9 +269,9 @@ test("appStringToHiveLink liketu", (t) => {
   ); 
 });
 
-test("appStringToHiveLink liketu", (t) => {
+test("appStringToHiveLink leofinance", (t) => {
 
   assert.deepEqual(appStringToHiveLink("leothreads","bitcoinflood","godfather-of-ai-warning-and-uk-crypto"),
-    'https://leofinance.io/threads/bitcoinflood/godfather-of-ai-warning-and-uk-crypto'
+    'https://inleo.io/threads/bitcoinflood/godfather-of-ai-warning-and-uk-crypto'
   );
 });
