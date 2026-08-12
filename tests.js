@@ -217,3 +217,17 @@ test("appStringToHiveLink leofinance", (t) => {
     'https://inleo.io/threads/bitcoinflood/godfather-of-ai-warning-and-uk-crypto'
   );
 });
+
+test("parseHiveUrl hivesuite.app post URL", (t) => {
+  assert.deepEqual(parseHiveUrl("https://hivesuite.app/post/author/permlink"), {
+    domain: "hivesuite.app",
+    author: "author",
+    permlink: "permlink"
+  });
+});
+
+test("appStringToHiveLink hivesuite", (t) => {
+  assert.deepEqual(appStringToHiveLink("hivesuite","author","permlink"),
+    'https://hivesuite.app/@author/permlink'
+  );
+});

@@ -21,6 +21,7 @@ const hiveDomains = [
   "leofinance.io",
   "inleo.io",
   "3speak.tv",
+  "hivesuite.app",
 ];
 
 function isHiveUrl(url) {
@@ -76,6 +77,10 @@ function parseHiveUrl(hiveLink) {
     hiveLink = hiveLink.replace("3speak.tv/watch?v=", "3speak.tv/@");
   }
 
+  if (hiveLink.includes("hivesuite.app/post/")) {
+    hiveLink = hiveLink.replace("hivesuite.app/post/", "hivesuite.app/@");
+  }
+
   if (!hiveLink.includes("://")) {
     hiveLink = "https://" + hiveLink;
   }
@@ -110,6 +115,10 @@ function appStringToHiveLink(app, author, permlink) {
 
   if (app.includes("liketu")) {
     return `https://www.liketu.com/@${author}/${permlink}`;
+  }
+
+  if (app.includes("hivesuite")) {
+    return `https://hivesuite.app/@${author}/${permlink}`;
   }
 
   return `https://hivel.ink/@${author}/${permlink}`;
